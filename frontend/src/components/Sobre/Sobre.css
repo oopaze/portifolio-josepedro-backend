@@ -1,0 +1,42 @@
+.sobreContent {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sobreContent .image {
+    flex-basis: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 7% 0px;
+    margin-left: 10%;
+}
+
+.sobreContent .image img {
+    width: 55%;
+    border-radius: 50%;
+}
+
+.sobreContent .sobre {
+    flex-basis: 30%;
+    margin-right: 20%;
+}
+
+.sobreContent .sobre h5 {
+    font-size: 24px;
+    font-family: Poppins;
+    font-weight: 400;
+
+    margin-bottom: 40px;
+}
+
+.sobreContent .sobre p {
+    text-align: justify;
+    font-size: 18px;
+    font-family: Poppins;
+}

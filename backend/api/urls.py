@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import HomeListApiView
+from .views import HomeListApiView, home_data_api_view
 
 
 urlpatterns = [
-    path('', HomeListApiView.as_view(), name="home")
+    path('', home_data_api_view, name="home")
 ]
