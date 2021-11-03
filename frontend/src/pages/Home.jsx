@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 import Menu from '../components/Menu/Menu';
 import Carrossel from '../components/Carrosel/Carrossel';
@@ -20,13 +20,11 @@ export default function Home(props){
     const [contatoImage, setContatoImage] = useState('')
     const [instagramImages, setInstagramImages] = useState([])
 
-
-    const apiBaseUrl = 'http://localhost:8090'
-
     useEffect(() => {
-        fetch(`${apiBaseUrl}/api/v1`)
+        fetch(`${process.env.API_URL !== undefined ? process.env.API_URL: "http://localhost:8000"}/api/v1`)
             .then(response => response.json())
             .then(data => {
+                const apiBaseUrl = process.env.API_URL !== undefined ? process.env.API_URL: "http://localhost:8000";
                 setImagesCarrossel(data.carrossel)
                 setprofileResumo(data.profile_resumo)
                 setprofileImage(apiBaseUrl + data.profile_foto)
