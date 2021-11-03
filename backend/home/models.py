@@ -107,6 +107,15 @@ class Home(models.Model):
     # pacotes
     pacotes = models.ManyToManyField(Pacote)
 
+    # frase
+    frase_img = models.ForeignKey(
+        'core.Imagem', 
+        on_delete=models.PROTECT, 
+        related_name='frase_img', 
+        null=True, 
+        blank=True
+    )
+
     # contato
     contato_image = models.ForeignKey('core.Imagem', on_delete=models.PROTECT)
 
