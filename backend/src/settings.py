@@ -20,15 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-SITE_URL = 'http://192.168.15.51:8000'
+SITE_URL = config("SITE_URL", default='http://localhost:8090')
+FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
+
+BASE_HOST = SITE_URL.replace('http://', '').replace('https://', '').replace('/', '')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nc8sbb2z90-9-72vy$zqot*f8vk#c+*n@-^ssxg+q4ly5iy)@r'
+SECRET_KEY = config('SECRET_KEY', default="uma-cahve-bem-segura")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -54,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,9 +122,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # CORS config for outside apps
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 
 # Internationalization
@@ -154,3 +157,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'user.User'
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

@@ -21,7 +21,7 @@ export default function Home(props){
     const [instagramImages, setInstagramImages] = useState([])
 
 
-    const apiBaseUrl = 'http://192.168.15.51:8000'
+    const apiBaseUrl = 'http://localhost:8090'
 
     useEffect(() => {
         fetch(`${apiBaseUrl}/api/v1`)
