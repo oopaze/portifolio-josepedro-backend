@@ -1,0 +1,70 @@
+.fraseContainer{
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fraseContainer img, .fraseContainer figure{
+    width: 100%;
+}
+
+.fraseContainer figure{
+    height: 60vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fraseContainer img {
+    filter: blur(2px);
+}
+
+.fraseContainer .info{
+    width: 80%;
+    height: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    position: relative;
+    top: -30vh;
+    
+    color: white;
+    font-family: Alice;
+}
+
+.fraseContainer .info p {
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 5px black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fraseContainer .info p::after {
+    content: '';
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+    width: 15%;
+    height: 2px;
+    background-color: white;
+}
+
+.fraseContainer .info h2 {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px black;
+}

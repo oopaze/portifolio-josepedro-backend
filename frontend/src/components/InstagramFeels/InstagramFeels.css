@@ -1,0 +1,57 @@
+.instagramFeelsContent {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.instagramFeelsContent > div {
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+.instagramFeelsContent .images {
+    max-width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instagramFeelsContent .images img {
+    width: 25%;
+}
+
+.instagramFeelsContent .overlayer {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 130px;
+}
+
+.instagramFeelsContent .overlayer > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 70%;
+    height: 90px;
+
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0rem 0rem 1rem rgb(0, 0, 0);
+}
+
+.instagramFeelsContent .overlayer > div h2 {
+    font-family: Alice;
+    letter-spacing: 0.2rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.instagramFeelsContent .overlayer > div span {
+    font-size: .8rem;
+    letter-spacing: .2rem;
+}
