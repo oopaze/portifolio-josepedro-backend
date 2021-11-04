@@ -1,5 +1,4 @@
 #!/bin/bash
-cd app
+cd backend
 python manage.py collectstatic
-python manage.py migrate
 gunicorn src.wsgi
