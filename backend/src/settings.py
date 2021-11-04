@@ -23,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SITE_URL = config("SITE_URL", default='http://localhost:8000')
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
 
-BASE_HOST = SITE_URL.replace('http://', '').replace('https://', '').replace('/', '')
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default="uma-cahve-bem-segura")
 
@@ -33,9 +31,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
