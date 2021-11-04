@@ -24,7 +24,7 @@ class HomeSerializer(serializers.ModelSerializer):
         return home.profile_foto.foto.url
 
     def get_momentos(self, home):
-        return [list(momento) for momento in home.momentos.all()]
+        return [dict(momento) for momento in home.momentos.all()]
 
     def get_pacotes(self, home):
         return [dict(pacote) for pacote in home.pacotes.all()]
