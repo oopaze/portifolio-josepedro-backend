@@ -1,6 +1,4 @@
 export default function MomentoItem(props) {
-    console.log(props)
-
     return (
         <div className={"momentoItem grid" + props.type}>
             {props.images.map((src, index) => {

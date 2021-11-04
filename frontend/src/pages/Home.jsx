@@ -23,7 +23,7 @@ export default function Home(props){
     const [momentoData, setMomentoData] = useState([])
 
     useEffect(() => {
-        const apiBaseUrl = process.env.API_URL === undefined ? "http://localhost:8000" :process.env.API_URL
+        const apiBaseUrl = "http://localhost:8090"
 
         fetch(`${apiBaseUrl}/api/v1`)
             .then(response => response.json())
