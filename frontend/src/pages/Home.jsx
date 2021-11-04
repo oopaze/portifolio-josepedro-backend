@@ -23,7 +23,7 @@ export default function Home(props){
     const [momentoData, setMomentoData] = useState([])
 
     useEffect(() => {
-        const apiBaseUrl = "http://localhost:8090"
+        const apiBaseUrl = "https://josepedrofotografias.herokuapp.com"
 
         fetch(`${apiBaseUrl}/api/v1`)
             .then(response => response.json())
