@@ -1,1 +1,1 @@
-web: sh run.sh
+web: sh deploy_backend.sh
