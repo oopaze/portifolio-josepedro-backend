@@ -21,10 +21,11 @@ export default function Home(props){
     const [instagramImages, setInstagramImages] = useState([])
 
     useEffect(() => {
-        fetch(`${process.env.API_URL !== undefined ? process.env.API_URL: "http://localhost:8000"}/api/v1`)
+        const apiBaseUrl = process.env.API_URL === undefined ? "http://localhost:8000" :process.env.API_URL
+
+        fetch(`${apiBaseUrl}/api/v1`)
             .then(response => response.json())
             .then(data => {
-                const apiBaseUrl = process.env.API_URL !== undefined ? process.env.API_URL: "http://localhost:8000";
                 setImagesCarrossel(data.carrossel)
                 setprofileResumo(data.profile_resumo)
                 setprofileImage(apiBaseUrl + data.profile_foto)

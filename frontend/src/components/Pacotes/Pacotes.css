@@ -1,69 +1,65 @@
 .pacotesContainer {
-    padding: 3% 20%;
-
     width: 100%;
-    min-height: 80vh;
+    padding: 5% 15%;
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background-color: #f1f1f1;
+    flex-direction: column;
 }
 
 .pacotesContainer .pacotesContent {
-    width: 100%;
-    margin: 50px 0px;
-    flex-grow: 1;
-
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
+
+    width: 100%;
 }
 
-.pacotesContainer .pacoteItem {
-    flex-basis: 32%;
-
+.pacotesContainer .pacotesContent figure {
     display: grid;
     grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
 
+    flex-basis: 29%;
+    min-width: 300px;
     height: 550px;
-    overflow: hidden;
-}
 
-.pacotesContainer .pacoteItem img {
-    min-height: 450px;
-}
-
-.pacotesContainer .pacoteItem figure {
-    width: 100%;
-    height: 550px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    margin: 5% 0px;
 
     overflow: hidden;
 }
 
-.pacotesContainer .pacoteItem .over-layer {
+.pacotesContainer .pacotesContent figure img {
+    display: block;
+    min-width: 100%;
+    min-height: 550px;
+
+    align-self: center;
+    justify-self: center;
+
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+.pacotesContainer .pacotesContent figure .overlayer {
+    grid-row-start: 1;
+    grid-column-start: 1;
+
+    background-color: rgba(255, 255, 255, 0.582);
+
+    width: 80%;
+    height: 90%;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column;
-    
-    margin-left: 15%;
-    width: 70%;
-    height: 450px;
-    
-    background: rgba(255, 255, 255, 0.582);
+    justify-content: center;
+    align-items: flex-end;
+
+    align-self: center;
+    justify-self: center;
     transition-duration: 1s;
-}
 
-.pacotesContainer .pacoteItem .over-layer h2 {
+}
+.pacotesContainer figure .overlayer .itemTitle {
     width: 100%;
     text-align: center;
     
@@ -71,27 +67,21 @@
     font-weight: 400;
 }
 
-.pacotesContainer .pacoteItem figure, 
-.pacotesContainer .pacoteItem .over-layer {
-    grid-row-start: 1;
-    grid-column-start: 1;
-}
 
-.pacotesContainer .pacoteItem:hover {
+.pacotesContainer figure:hover {
     cursor: pointer;
 }
 
-.pacotesContainer .pacoteItem:hover .over-layer {
+.pacotesContainer figure:hover .overlayer {
     transition-duration: 1s;
 
     width: 100%;
-    height: 550px;
+    height: 100%;
 
     padding-bottom: 270px;
-    margin-left: 0px;
 }
 
-.pacotesContainer .pacoteItem:hover .over-layer h2 {
+.pacotesContainer figure:hover .overlayer h2 {
     font-size: 1.5rem;
+    font-weight: 600;
 }
-
