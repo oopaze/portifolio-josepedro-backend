@@ -1,0 +1,94 @@
+.momentosContainer {
+    width: 100%;
+    padding: 5% 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #EDEDED;
+}
+
+.momentosContainer .titleContent {
+    width: 100%;
+
+    display: block;
+    text-align: left;
+
+    font-family: Poppins;
+}
+
+.momentosContainer .titleContent h2 {
+    font-size: 2rem;
+}
+
+.momentosContainer .titleContent p {
+    font-size: 1.2rem;
+}
+
+.momentosContainer .titleContent::after {
+    content: "";
+    margin-top: 10px;
+    display: block;
+    width: 3%;
+    height: 3px;
+    background-color: black;
+}
+
+.momentosContainer .momentosContent {
+    width: 100%;
+    flex-grow: 1;
+
+    margin: 5% 0px;
+}
+
+.momentosContainer .momentosContent .griddefault {
+    width: 100%;
+    height: 550px;
+
+    display: grid;
+    grid-template: 
+        "image1 image2 image4" 1fr
+        "image3 image3 image4" 1fr
+        / 1fr 1fr 1fr;
+
+    gap: 2%;
+}
+
+.griddefault figure {
+    overflow: hidden;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.griddefault figure.image1 {
+    grid-area: image1;
+}
+
+.griddefault figure.image2 {
+    grid-area: image2;
+}
+
+.griddefault figure.image3 {
+    grid-area: image3;
+}
+
+.griddefault figure.image4 {
+    grid-area: image4;
+}
+
+.griddefault figure.image1, .griddefault figure.image2 {
+    height: 100%;
+    width: 100%;
+}
+
+.griddefault figure img {
+    min-height: 100%;
+    width: 100%;
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Menu from '../components/Menu/Menu';
 import Carrossel from '../components/Carrosel/Carrossel';
 import Sobre from '../components/Sobre/Sobre';
+import Momentos from '../components/Momentos/Momentos';
 import Frase from '../components/Frase/Frase';
 import Pacotes from '../components/Pacotes/Pacotes';
 import Contato from '../components/Contato/Contato';
@@ -19,6 +20,7 @@ export default function Home(props){
     const [pacotes, setPacotes] = useState([])
     const [contatoImage, setContatoImage] = useState('')
     const [instagramImages, setInstagramImages] = useState([])
+    const [momentoData, setMomentoData] = useState([])
 
     useEffect(() => {
         const apiBaseUrl = process.env.API_URL === undefined ? "http://localhost:8000" :process.env.API_URL
@@ -33,9 +35,11 @@ export default function Home(props){
                 setPacotes(data.pacotes)
                 setContatoImage(apiBaseUrl + data.contato_image)
                 setInstagramImages(data.instagram_feels)
+                setMomentoData(data.momentos)
 
                 // disable loading widget
                 setLoading(false)
+                
             })
     }, [])
 
@@ -56,6 +60,7 @@ export default function Home(props){
                 <div>
                     <Carrossel imagesCarrossel={imagesCarrossel}/>
                     <Sobre profileImage={profileImage} profileResumo={profileResumo}/>
+                    <Momentos momentos={momentoData}/>
                     <Frase fraseImage={fraseImage}/>
                     <Pacotes pacotes={pacotes}/>
                     <Contato bgImage={contatoImage}/>
