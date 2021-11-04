@@ -1,0 +1,47 @@
+.sobreContent {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sobreContent .image {
+    flex-basis: 45%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 7% 0px;
+    margin-left: 5%;
+}
+
+.sobreContent .image img {
+    width: 55%;
+    border-radius: 50%;
+}
+
+.sobreContent .sobre {
+    flex-basis: 40%;
+    margin-right: 10%;
+}
+
+.sobreContent .sobre h5 {
+    font-size: 1.5rem;
+    font-family: Poppins;
+    font-weight: 400;
+
+    margin-bottom: 40px;
+}
+
+.sobreContent .sobre strong {
+    font-weight: 700;
+}
+
+.sobreContent .sobre p {
+    text-align: justify;
+    font-size: 1.1rem;
+    font-family: Poppins;
+    font-weight: 400;
+}
