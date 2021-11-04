@@ -6,9 +6,11 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 dotenv_path = BASE_DIR / '.env.dev'
 load_dotenv(dotenv_path)
+
+SITE_URL = os.getenv("SITE_URL", default='http://localhost:8000')
+
 
 DATABASES = {
     'default': {
@@ -20,3 +22,7 @@ DATABASES = {
         'PORT': os.getenv('DB_POST', 5432)
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    os.getenv('FRONTEND_API', default="http://localhost:3000"),
+]

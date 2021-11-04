@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-SITE_URL = config("SITE_URL", default='http://localhost:8090')
+SITE_URL = config("SITE_URL", default='http://localhost:8000')
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
 
 BASE_HOST = SITE_URL.replace('http://', '').replace('https://', '').replace('/', '')
@@ -122,7 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # CORS config for outside apps
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    config('FRONTEND_API', default="http://localhost:3000"),
+]
 
 
 
