@@ -22,7 +22,3 @@ DATABASES = {
         'PORT': os.getenv('DB_POST', 5432)
     }
 }
-
-CORS_ALLOWED_ORIGINS = [
-    os.getenv('FRONTEND_API', default="http://localhost:3000"),
-]
