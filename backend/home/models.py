@@ -3,16 +3,23 @@ from django.conf import settings
 
 
 class Momento(models.Model):
+    DEFAULT = "default"
+    TIPOS = ((DEFAULT, "Padrão"),)
+
     momento_1 = models.ForeignKey('core.Imagem', on_delete=models.CASCADE, related_name='momento_1')
     momento_2 = models.ForeignKey('core.Imagem', on_delete=models.CASCADE, related_name='momento_2')
     momento_3 = models.ForeignKey('core.Imagem', on_delete=models.CASCADE, related_name='momento_3')
     momento_4 = models.ForeignKey('core.Imagem', on_delete=models.CASCADE, related_name='momento_4')
+    tipo = models.CharField("Tipo", max_length=20, choices=TIPOS, default=DEFAULT)
 
     def __iter__(self):
-        yield settings.SITE_URL + self.momento_1.foto.url
-        yield settings.SITE_URL + self.momento_2.foto.url
-        yield settings.SITE_URL + self.momento_3.foto.url
-        yield settings.SITE_URL + self.momento_4.foto.url
+        yield 'tipo', self.tipo
+        yield 'imagens', [
+            settings.SITE_URL + self.momento_1.foto.url,
+            settings.SITE_URL + self.momento_2.foto.url,
+            settings.SITE_URL + self.momento_3.foto.url,
+            settings.SITE_URL + self.momento_4.foto.url,
+        ]
 
     def __str__(self):
         return f"Momento {self.id}"
