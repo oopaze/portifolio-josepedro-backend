@@ -23,3 +23,17 @@ button.default:hover {
     background: #f1f1f1;
     color: black;
 }
+
+@media (max-width: 700px) {
+    button.default {
+        width: 150px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    button.default {
+        width: 120px;
+        font-size: 1rem;
+    }
+}

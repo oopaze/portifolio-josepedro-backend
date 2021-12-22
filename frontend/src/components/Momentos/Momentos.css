@@ -92,3 +92,13 @@
     min-height: 100%;
     width: 100%;
 }
+
+@media (max-width: 700px) {
+    .titleContent::after {
+        width: 60px !important;
+    }
+
+    .titleContent p {
+        font-size: 1rem !important;
+    }
+}

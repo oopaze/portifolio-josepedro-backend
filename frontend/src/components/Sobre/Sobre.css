@@ -33,6 +33,8 @@
     font-weight: 400;
 
     margin-bottom: 40px;
+
+    width: 100%;
 }
 
 .sobreContent .sobre strong {
@@ -44,4 +46,57 @@
     font-size: 1.1rem;
     font-family: Poppins;
     font-weight: 400;
+}
+
+@media (max-width: 1100px){
+    .sobreContent {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding-bottom: 20px;
+        padding-top: 20px;
+
+    }
+
+    .sobreContent .image {
+        width: 50%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sobreContent .image img {
+        height: 20vw;
+        width: auto;
+    }
+    
+    .sobreContent .sobre {
+        width: 70%;
+        margin: 0;
+        padding: 0;
+        margin-top: 30px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sobreContent .sobre h5 {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 1100px){
+
+    .sobreContent .image {
+        width: 50%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sobreContent .image img {
+        height: 50vw;
+        width: auto;
+    }
 }

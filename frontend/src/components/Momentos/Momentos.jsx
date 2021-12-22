@@ -5,7 +5,7 @@ import "../Momentos/Momentos.css";
 
 
 export default function Momentos(props) {
-    const settings =  {
+    const settings = {
         arrows: false,
         autoplay: true,
         autoplaySpeed: 5000,
@@ -15,6 +15,8 @@ export default function Momentos(props) {
         pauseOnHover: false
     };
 
+    console.log(props)
+
     return (
         <div className="momentosContainer">
             <div className="titleContent">
@@ -22,15 +24,15 @@ export default function Momentos(props) {
                 <p> Que passaram pela minha lente </p>
             </div>
             <div className="momentosContent">
-                { props.momentos.length >= 1 ?
-                    <Slider { ...settings }>
-                        {props.momentos.map((momento, index) => {
-                            return <MomentoItem images={momento.imagens} type={momento.tipo} key={index}/>
+                {props.momentos.length >= 1 ?
+                    <Slider {...settings}>
+                        {props.momentos.map((moment, index) => {
+                            return <MomentoItem images={moment.imagens} type={moment.tipo} key={index} />
                         })}
                     </Slider>
-                : '' }
+                    : ''}
             </div>
-            <button type="button" className="default"> Ver Mais </button>   
+            <button type="button" className="default"> Ver Mais </button>
         </div>
     );
 }

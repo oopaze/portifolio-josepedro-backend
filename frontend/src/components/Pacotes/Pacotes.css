@@ -1,6 +1,6 @@
 .pacotesContainer {
     width: 100%;
-    padding: 5% 15%;
+    padding: 5%;
 
     display: flex;
     justify-content: center;
@@ -21,9 +21,9 @@
     display: grid;
     grid-template-columns: 1fr;
 
-    flex-basis: 29%;
+    flex-basis: 25%;
     min-width: 300px;
-    height: 550px;
+    height: 650px;
 
     margin: 5% 0px;
 
@@ -33,7 +33,7 @@
 .pacotesContainer .pacotesContent figure img {
     display: block;
     min-width: 100%;
-    min-height: 550px;
+    height: 650px;
 
     align-self: center;
     justify-self: center;

@@ -10,7 +10,7 @@ import Contato from '../components/Contato/Contato';
 import InstagramFeels from '../components/InstagramFeels/InstagramFeels';
 
 
-export default function Home(props){
+export default function Home(props) {
     const [loading, setLoading] = useState(true)
 
     const [imagesCarrossel, setImagesCarrossel] = useState([])
@@ -23,7 +23,7 @@ export default function Home(props){
     const [momentoData, setMomentoData] = useState([])
 
     useEffect(() => {
-        const apiBaseUrl = "http://localhost:8090"
+        const apiBaseUrl = "http://localhost:8000"
 
         fetch(`${apiBaseUrl}/api/v1`)
             .then(response => response.json())
@@ -39,13 +39,13 @@ export default function Home(props){
 
                 // disable loading widget
                 setLoading(false)
-                
+
             })
     }, [])
 
     return (
-        <>  
-            <div className="loadingContent" style={{display: loading ? "flex": "none"}}>
+        <>
+            <div className="loadingContent" style={{ display: loading ? "flex" : "none" }}>
                 <div class="lds-ring">
                     <div></div>
                     <div></div>
@@ -54,17 +54,17 @@ export default function Home(props){
                 </div>
             </div>
 
-            <div style={{display: loading ? "none": "initial"}}>
+            <div style={{ display: loading ? "none" : "initial" }}>
                 <Menu />
-                
+
                 <div>
-                    <Carrossel imagesCarrossel={imagesCarrossel}/>
-                    <Sobre profileImage={profileImage} profileResumo={profileResumo}/>
-                    <Momentos momentos={momentoData}/>
-                    <Frase fraseImage={fraseImage}/>
-                    <Pacotes pacotes={pacotes}/>
-                    <Contato bgImage={contatoImage}/>
-                    <InstagramFeels instagramImages={instagramImages}/>
+                    <Carrossel imagesCarrossel={imagesCarrossel} />
+                    <Sobre profileImage={profileImage} profileResumo={profileResumo} />
+                    <Momentos momentos={momentoData} />
+                    <Frase fraseImage={fraseImage} />
+                    <Pacotes pacotes={pacotes} />
+                    <Contato bgImage={contatoImage} />
+                    <InstagramFeels instagramImages={instagramImages} />
                 </div>
 
                 <footer>

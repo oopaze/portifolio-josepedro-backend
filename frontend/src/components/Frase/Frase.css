@@ -68,3 +68,26 @@
     font-size: 1.5rem;
     text-shadow: 1px 1px 3px black;
 }
+
+@media (max-width: 900px) {
+    .fraseContainer {
+        height: 40vh;
+    }
+    .fraseContainer img {
+        width: initial;
+        height: 100%;
+    }
+
+    .fraseContainer .info {
+        width: 100% !important;
+        top: -20vh;
+    }
+
+    .fraseContainer .info p {
+        font-size: 1.2rem;
+    }
+
+    .fraseContainer .info h2 {
+        font-size: 1rem;
+    }
+}

@@ -68,3 +68,9 @@ footer {
     font-family: Poppins;
     font-size: .8rem;
 }
+
+@media (max-width: 700px) {
+    h2.title::after {
+        width: 60px !important;
+    }
+}
