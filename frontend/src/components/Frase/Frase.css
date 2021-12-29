@@ -1,47 +1,38 @@
 .fraseContainer{
     width: 100%;
-    height: auto;
+    height: 60vh;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.fraseContainer img, .fraseContainer figure{
-    width: 100%;
 }
 
 .fraseContainer figure{
     height: 60vh;
+    width: 100%;
     overflow: hidden;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fraseContainer img {
-    filter: blur(2px);
-}
-
-.fraseContainer .info{
-    width: 80%;
-    height: 0px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2pxs);
+    
+    color: white;
+    font-family: Alice;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    position: relative;
-    top: -30vh;
-    
-    color: white;
-    font-family: Alice;
 }
 
-.fraseContainer .info p {
+.fraseContainer figure > * {
+    background-attachment: fixed;
+}
+
+.fraseContainer p {
     font-size: 2rem;
     text-align: center;
     text-shadow: 2px 2px 5px black;
@@ -52,7 +43,7 @@
     flex-direction: column;
 }
 
-.fraseContainer .info p::after {
+.fraseContainer p::after {
     content: '';
     display: block;
 
@@ -64,30 +55,31 @@
     background-color: white;
 }
 
-.fraseContainer .info h2 {
+.fraseContainer h2 {
     font-size: 1.5rem;
     text-shadow: 1px 1px 3px black;
 }
 
+
+@media (min-width: 700px) and (max-height: 400px) {
+    .fraseContainer, .fraseContainer figure {
+        height: 70vh !important;
+    }
+}
+
 @media (max-width: 900px) {
-    .fraseContainer {
+    .fraseContainer, .fraseContainer figure {
         height: 40vh;
     }
-    .fraseContainer img {
-        width: initial;
-        height: 100%;
+    .fraseContainer figure {
+        background-attachment: local;
     }
 
-    .fraseContainer .info {
-        width: 100% !important;
-        top: -20vh;
-    }
-
-    .fraseContainer .info p {
+    .fraseContainer p {
         font-size: 1.2rem;
     }
 
-    .fraseContainer .info h2 {
+    .fraseContainer h2 {
         font-size: 1rem;
     }
 }

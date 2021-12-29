@@ -49,11 +49,13 @@
     border: none;
     background-color: transparent;
 
-    border-bottom: 2px solid rgba(0, 0, 0, 0.623);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.39);
 
-    font-size: 1.4rem;
+    font-size: 0.8rem;
+    letter-spacing: .2rem;
     font-family: Roboto;
     font-weight: 400;
+    text-transform: uppercase;
     color: black;
 }
 
@@ -132,6 +134,16 @@
     color: black;
 }
 
+@media (min-width: 700px) and (max-height: 400px) {
+    .contatoContainer .contatoContent input, .contatoContainer .contatoContent textarea {
+        height: 30px;
+        font-size: 0.7rem;
+    }
+
+    .contatoContainer {
+        height: 110vh;
+    }
+}
 
 @media (max-width: 700px) {
     .contatoContainer {

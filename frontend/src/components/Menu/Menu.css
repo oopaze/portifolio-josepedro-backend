@@ -39,33 +39,23 @@ header.menu ul {
 }
 
 header.menu ul li {
-    margin: 0 10px;
-}
-
-
-
-header.menu ul li a::after{
-    content: '';
-    display: block;
-    
-    width: 0;
-    height: 2px;
-
-    transition: width 0.8s ease;
-
-    background-color: white;
+    padding: 8px 20px;
 }
 
 header.menu ul li a {
     text-shadow: 2px 2px 5px black;
     color: white;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: .3rem;
+    text-transform: uppercase;
     font-family: alice;
     font-weight: 400;
 }
 
-header.menu ul li:hover a::after {
-    width: 100%;
+header.menu ul li:hover, header.menu ul li.active{
+    border: 1px solid white;
+
+    text-transform: 2s;
 } 
 
 @media (max-width: 700px) {

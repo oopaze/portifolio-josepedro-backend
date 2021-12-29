@@ -5,9 +5,9 @@ import Carrossel from '../components/Carrosel/Carrossel';
 import Sobre from '../components/Sobre/Sobre';
 import Momentos from '../components/Momentos/Momentos';
 import Frase from '../components/Frase/Frase';
-import Pacotes from '../components/Pacotes/Pacotes';
 import Contato from '../components/Contato/Contato';
 import InstagramFeels from '../components/InstagramFeels/InstagramFeels';
+import WhatsappButton from "../components/Whatsapp/Whatsapp";
 
 
 export default function Home(props) {
@@ -57,12 +57,11 @@ export default function Home(props) {
             <div style={{ display: loading ? "none" : "initial" }}>
                 <Menu />
 
-                <div>
+                <div style={{ width: "100%", 'min-height': "100vh" }}>
                     <Carrossel imagesCarrossel={imagesCarrossel} />
                     <Sobre profileImage={profileImage} profileResumo={profileResumo} />
-                    <Momentos momentos={momentoData} />
                     <Frase fraseImage={fraseImage} />
-                    <Pacotes pacotes={pacotes} />
+                    <Momentos momentos={momentoData} />
                     <Contato bgImage={contatoImage} />
                     <InstagramFeels instagramImages={instagramImages} />
                 </div>
@@ -71,6 +70,8 @@ export default function Home(props) {
                     Orion Tecnologia © Todos os direitos reservados.
                 </footer>
             </div>
+
+            <WhatsappButton />
         </>
     );
 }

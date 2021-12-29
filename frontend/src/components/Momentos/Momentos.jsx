@@ -1,7 +1,7 @@
-import Slider from "infinite-react-carousel/lib";
 import MomentoItem from "./MomentoItem";
 
 import "../Momentos/Momentos.css";
+import '../../styles/button.css';
 
 
 export default function Momentos(props) {
@@ -15,8 +15,6 @@ export default function Momentos(props) {
         pauseOnHover: false
     };
 
-    console.log(props)
-
     return (
         <div className="momentosContainer">
             <div className="titleContent">
@@ -25,12 +23,12 @@ export default function Momentos(props) {
             </div>
             <div className="momentosContent">
                 {props.momentos.length >= 1 ?
-                    <Slider {...settings}>
-                        {props.momentos.map((moment, index) => {
-                            return <MomentoItem images={moment.imagens} type={moment.tipo} key={index} />
-                        })}
-                    </Slider>
-                    : ''}
+                    props.momentos.map(
+                        (moment, index) => {
+                            return <MomentoItem capaURL={moment.capaUrl} type={moment.tipo} key={index} />
+                        }
+                    ) : ''
+                }
             </div>
             <button type="button" className="default"> Ver Mais </button>
         </div>

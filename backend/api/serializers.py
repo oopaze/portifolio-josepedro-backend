@@ -2,7 +2,7 @@ from functools import partial
 
 from rest_framework import serializers
 
-from home.models import Home
+from home.models import Home, Momento
 
 
 class HomeSerializer(serializers.ModelSerializer):
@@ -24,7 +24,10 @@ class HomeSerializer(serializers.ModelSerializer):
         return home.profile_foto.foto.url
 
     def get_momentos(self, home):
-        return [dict(momento) for momento in home.momentos.all()]
+        return [
+            dict(momento)
+            for momento in Momento.objects.exclude(tipo='default').distinct('tipo')[:3]
+        ]
 
     def get_pacotes(self, home):
         return [dict(pacote) for pacote in home.pacotes.all()]
@@ -34,7 +37,7 @@ class HomeSerializer(serializers.ModelSerializer):
 
     def get_instagram_feels(self, home):
         return list(home.instagram_feels)
- 
+
     class Meta:
         model = Home
         fields = '__all__'

@@ -6,7 +6,7 @@ import logo from '../../assets/images/logo.png'
 export default function Menu() {
     return (
         <header className="menu">
-            <a href="#">
+            <a href="//">
                 <img className="logo" alt="logo" src={logo}></img>
             </a>
             <ul className='menuList'>
