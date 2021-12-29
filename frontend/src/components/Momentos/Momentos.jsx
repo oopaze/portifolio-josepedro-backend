@@ -5,16 +5,6 @@ import '../../styles/button.css';
 
 
 export default function Momentos(props) {
-    const settings = {
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        dots: true,
-        duration: 200,
-        initialSlide: 0,
-        pauseOnHover: false
-    };
-
     return (
         <div className="momentosContainer">
             <div className="titleContent">
