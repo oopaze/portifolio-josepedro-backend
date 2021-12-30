@@ -1,34 +1,24 @@
 from django.db import models
+from django.utils.timezone import now
+
+from .choices import TIPOS, DEFAULT
 
 
-class Imagem(models.Model):
-    CASAMENTO = 'casamento'
-    PREWEDDING = 'prewedding'
-    ANIVERSARIO = 'aniversario'
-    FORMATURA = 'formatura'
-    ESTUDIO = 'estudio'
+class TimeStampedModel(models.Model):
+    criado_em = models.DateTimeField('Criado em', auto_now_add=True)
+    atualizado_em = models.DateTimeField('Atualizado em', auto_now=True)
 
-    TIPOS = (
-        (CASAMENTO, 'Casamento'),
-        (PREWEDDING, 'Pré Wedding'),
-        (ANIVERSARIO, 'Aniversário'),
-        (FORMATURA, 'Formatura'),
-        (ESTUDIO, 'Estúdio')
-    )
+    class Meta:
+        abstract = True
 
 
+class Imagem(TimeStampedModel):
     foto = models.ImageField('foto', upload_to='imagens')
-    tipo = models.CharField(
-        "Tipo", 
-        max_length=20, 
-        choices=TIPOS, 
-        null=True, 
-        blank=True
-    )
+    tipo = models.CharField("Tipo", max_length=20, choices=TIPOS, default=DEFAULT)
+    disponivel_galeria = models.BooleanField('Disponível para galeria?', default=True)
 
     def __str__(self):
         return f"{self.foto.name.split('/')[-1]}"
-
 
     class Meta:
         verbose_name_plural = 'Imagens'

@@ -21,13 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 SITE_URL = config("SITE_URL", default='http://localhost:8000')
+BASE_MEDIA_URL = SITE_URL
+
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default="uma-cahve-bem-segura")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -48,9 +50,11 @@ INSTALLED_APPS = [
     'user',
     'home',
     'core',
+    'booking',
     # installed libs
     'rest_framework',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +129,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 #     config('FRONTEND_API', default="http://localhost:3000"),
 # ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -151,15 +154,20 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIAFILES_STORAGE = 'src.storage_backends.MediaStorage'
+    STATICFILES_STORAGE = 'src.storage_backends.StaticStorage'
+
+    AWS_STORAGE_BUCKET_NAME = config('BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    BASE_MEDIA_URL = ''
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'user.User'
-
-
-# try:
-#     from .local_settings import *
-# except ImportError:
-#     pass

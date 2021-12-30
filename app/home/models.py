@@ -1,22 +1,11 @@
 from django.db import models
 from django.conf import settings
 
+from core.choices import TIPOS, DEFAULT
+from core.models import TimeStampedModel
 
-class Momento(models.Model):
-    DEFAULT = "default"
-    CASAMENTO = 'CA'
-    PRE_WEDDING = 'PW'
-    GESTANTE = 'GE'
-    CORPORATIVA = 'CORP'
-    ENSAIOS_INDIVIDUAIS = 'EI'
-    TIPOS = (
-        (DEFAULT, "Padrão"),
-        (CASAMENTO, 'Casamento'),
-        (PRE_WEDDING, 'Pré-Wedding'),
-        (GESTANTE, 'Gestante'),
-        (CORPORATIVA, 'Corporativa'),
-        (ENSAIOS_INDIVIDUAIS, 'Ensaios Individuais'),
-    )
+
+class Momento(TimeStampedModel):
 
     capa = models.ForeignKey(
         'core.Imagem', on_delete=models.CASCADE, related_name='capa'
@@ -25,25 +14,25 @@ class Momento(models.Model):
 
     def __iter__(self):
         yield 'tipo', self.get_tipo_display()
-        yield 'capaUrl', settings.SITE_URL + self.capa.foto.url
+        yield 'capaUrl', settings.BASE_MEDIA_URL + self.capa.foto.url
 
     def __str__(self):
-        return f"Momento {self.id}"
+        return f"{self.id} - Momento ({self.get_tipo_display()})"
 
 
-class Pacote(models.Model):
+class Pacote(TimeStampedModel):
     titulo = models.CharField('Título', max_length=100)
     imagem_fundo = models.ForeignKey('core.Imagem', on_delete=models.CASCADE)
 
     def __iter__(self):
-        yield 'imagem', settings.SITE_URL + self.imagem_fundo.foto.url
+        yield 'imagem', settings.BASE_MEDIA_URL + self.imagem_fundo.foto.url
         yield 'titulo', self.titulo
 
     def __str__(self):
         return f"Pacote {self.titulo}"
 
 
-class InstagramFeel(models.Model):
+class InstagramFeel(TimeStampedModel):
     instagram_1 = models.ForeignKey(
         'core.Imagem', on_delete=models.CASCADE, related_name='instagram_1'
     )
@@ -86,17 +75,17 @@ class InstagramFeel(models.Model):
     )
 
     def __iter__(self):
-        yield settings.SITE_URL + self.instagram_1.foto.url
-        yield settings.SITE_URL + self.instagram_2.foto.url
-        yield settings.SITE_URL + self.instagram_3.foto.url
-        yield settings.SITE_URL + self.instagram_4.foto.url
-        yield settings.SITE_URL + self.instagram_5.foto.url
-        yield settings.SITE_URL + self.instagram_6.foto.url
-        yield settings.SITE_URL + self.instagram_7.foto.url
-        yield settings.SITE_URL + self.instagram_8.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_1.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_2.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_3.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_4.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_5.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_6.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_7.foto.url
+        yield settings.BASE_MEDIA_URL + self.instagram_8.foto.url
 
 
-class Carrossel(models.Model):
+class Carrossel(TimeStampedModel):
     carrossel_1 = models.ForeignKey(
         'core.Imagem', on_delete=models.CASCADE, related_name='carrossel_1'
     )
@@ -130,11 +119,11 @@ class Carrossel(models.Model):
     )
 
     def __iter__(self):
-        yield settings.SITE_URL + self.carrossel_1.foto.url
-        yield settings.SITE_URL + self.carrossel_2.foto.url
-        yield settings.SITE_URL + self.carrossel_3.foto.url
-        yield settings.SITE_URL + self.carrossel_4.foto.url
-        yield settings.SITE_URL + self.carrossel_5.foto.url
+        yield settings.BASE_MEDIA_URL + self.carrossel_1.foto.url
+        yield settings.BASE_MEDIA_URL + self.carrossel_2.foto.url
+        yield settings.BASE_MEDIA_URL + self.carrossel_3.foto.url
+        yield settings.BASE_MEDIA_URL + self.carrossel_4.foto.url
+        yield settings.BASE_MEDIA_URL + self.carrossel_5.foto.url
 
     def __str__(self):
         return f"Carrossel {self.id}"
@@ -143,7 +132,7 @@ class Carrossel(models.Model):
         verbose_name_plural = 'Carrosseis'
 
 
-class Home(models.Model):
+class Home(TimeStampedModel):
     # corresel inicial
     carrossel = models.ForeignKey(Carrossel, models.PROTECT)
 
@@ -152,9 +141,6 @@ class Home(models.Model):
         'core.Imagem', on_delete=models.PROTECT, related_name='profile'
     )
     profile_resumo = models.TextField('Resumo')
-
-    # momentos
-    momentos = models.ManyToManyField(Momento)
 
     # pacotes
     pacotes = models.ManyToManyField(Pacote)

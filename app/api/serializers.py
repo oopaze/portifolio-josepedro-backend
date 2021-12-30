@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.conf import settings
 
 from home.models import Home, Momento
 from user.models import Contato
@@ -23,10 +24,10 @@ class HomeSerializer(serializers.ModelSerializer):
         return list(home.carrossel)
 
     def get_frase_img(self, home):
-        return home.frase_img.foto.url
+        return settings.BASE_MEDIA_URL + home.frase_img.foto.url
 
     def get_profile_foto(self, home):
-        return home.profile_foto.foto.url
+        return settings.BASE_MEDIA_URL + home.profile_foto.foto.url
 
     def get_momentos(self, home):
         return [
@@ -38,7 +39,7 @@ class HomeSerializer(serializers.ModelSerializer):
         return [dict(pacote) for pacote in home.pacotes.all()]
 
     def get_contato_image(self, home):
-        return home.contato_image.foto.url
+        return settings.BASE_MEDIA_URL + home.contato_image.foto.url
 
     def get_instagram_feels(self, home):
         return list(home.instagram_feels)
