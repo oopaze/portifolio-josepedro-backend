@@ -1,5 +1,8 @@
 new_backup:
 	PGPASSWORD=root pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -d portifolio_josepedro -f app/media/backups/db.dump
+	git add app/media/backups/db.dump
+	git commit -m "db: updating backup file"
+	git push origin developer
 
 restore_heroku_db:
 	heroku pg:backups:restore --app backend-josepedrofotografias --confirm backend-josepedrofotografias 'https://github.com/oopaze/portifolio-josepedro-backend/blob/developer/app/media/backups/db.dump?raw=true'
