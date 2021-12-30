@@ -1,5 +1,5 @@
 new_backup:
-	PGPASSWORD=root pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -d portifolio_josepedro -f app/media/db.dump
+	PGPASSWORD=root pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -d portifolio_josepedro -f app/media/backups/db.dump
 
 restore_heroku_db:
 	heroku pg:backups:restore --app backend-josepedrofotografias --confirm backend-josepedrofotografias 'https://github.com/oopaze/portifolio-josepedro-backend/blob/developer/app/media/db.dump/?raw=true'
