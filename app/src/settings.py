@@ -21,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 SITE_URL = config("SITE_URL", default='http://localhost:8000')
-FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:3000')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default="uma-cahve-bem-segura")
@@ -29,7 +28,11 @@ SECRET_KEY = config('SECRET_KEY', default="uma-cahve-bem-segura")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "josepedrofotografias.herokuapp.com",
+    "backend-josepedrofotografias.herokuapp.com",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -39,13 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     # created apps
     'api',
     'user',
     'home',
     'core',
-
     # installed libs
     'rest_framework',
     'corsheaders',
@@ -95,7 +96,7 @@ DATABASES = {
         'USER': config('DB_USER', default='postgres'),
         'PASSWORD': config('DB_PASSWD', default='root'),
         'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432')
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 
@@ -122,7 +123,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS = [
 #     config('FRONTEND_API', default="http://localhost:3000"),
 # ]
-
 
 
 # Internationalization
