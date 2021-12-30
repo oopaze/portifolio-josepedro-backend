@@ -1,8 +1,13 @@
-from functools import partial
-
 from rest_framework import serializers
 
 from home.models import Home, Momento
+from user.models import Contato
+
+
+class ContatoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contato
+        fields = '__all__'
 
 
 class HomeSerializer(serializers.ModelSerializer):
