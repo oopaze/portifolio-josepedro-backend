@@ -1,4 +1,4 @@
 #!/bin/bash
-cd backend
+cd app
 python manage.py collectstatic
 gunicorn src.wsgi
