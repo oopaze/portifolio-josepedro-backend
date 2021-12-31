@@ -19,6 +19,7 @@ class Momento(TimeStampedModel):
     def __iter__(self):
         yield 'tipo', self.get_tipo_display()
         yield 'capaUrl', settings.BASE_MEDIA_URL + self.capa.foto.url
+        yield 'tipoAbbreviation', self.tipo
 
     def __str__(self):
         return f"{self.id} - Momento ({self.get_tipo_display()})"

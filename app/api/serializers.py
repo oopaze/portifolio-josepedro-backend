@@ -3,6 +3,7 @@ from django.conf import settings
 
 from home.models import Home, Momento
 from user.models import Contato
+from booking.models import Booking
 
 
 class ContatoSerializer(serializers.ModelSerializer):
@@ -12,18 +13,27 @@ class ContatoSerializer(serializers.ModelSerializer):
 
 
 class MomentoSerializer(serializers.ModelSerializer):
-    capaURL = serializers.SerializerMethodField()
-    tipoName = serializers.SerializerMethodField()
+    capaUrl = serializers.SerializerMethodField()
+    tipoAbbreviation = serializers.CharField(source='tipo')
+    tipo = serializers.CharField(source='get_tipo_display')
 
-    def get_capaURL(self, obj):
+    def get_capaUrl(self, obj):
         return obj.capaURL
-
-    def get_tipoName(self, obj):
-        return obj.get_tipo_display()
 
     class Meta:
         model = Momento
-        fields = ('tipo', 'tipoName', 'capaURL')
+        fields = ('tipo', 'tipoAbbreviation', 'capaUrl')
+
+
+class BookingSerializer(serializers.ModelSerializer):
+    capaUrl = serializers.SerializerMethodField()
+
+    def get_capaUrl(self, obj):
+        return settings.BASE_MEDIA_URL + obj.capa.foto.url
+
+    class Meta:
+        model = Booking
+        fields = ('id', 'capaUrl', 'titulo', 'comentario')
 
 
 class HomeSerializer(serializers.ModelSerializer):

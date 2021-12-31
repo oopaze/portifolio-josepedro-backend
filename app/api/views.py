@@ -4,7 +4,13 @@ from rest_framework.decorators import api_view
 
 from user.models import Contato
 from home.models import Home, Momento
-from .serializers import ContatoSerializer, HomeSerializer, MomentoSerializer
+from booking.models import Booking
+from .serializers import (
+    BookingSerializer,
+    ContatoSerializer,
+    HomeSerializer,
+    MomentoSerializer,
+)
 
 
 @api_view(['GET'])
@@ -21,6 +27,14 @@ class MomentoListAPIView(ListAPIView):
 
     def get_queryset(self):
         return Momento.objects.all().distinct('tipo')
+
+
+class BookingListAPIView(ListAPIView):
+    serializer_class = BookingSerializer
+    model = Booking
+
+    def get_queryset(self):
+        return Booking.objects.filter(tipo=self.kwargs['tipo'])
 
 
 class ContatoCreateAPIView(CreateAPIView):
