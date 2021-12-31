@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.conf import settings
 
 from .choices import TIPOS, DEFAULT
 
@@ -16,6 +17,10 @@ class Imagem(TimeStampedModel):
     foto = models.ImageField('foto', upload_to='imagens')
     tipo = models.CharField("Tipo", max_length=20, choices=TIPOS, default=DEFAULT)
     disponivel_galeria = models.BooleanField('Disponível para galeria?', default=True)
+
+    @property
+    def foto_full_url(self):
+        return settings.BASE_MEDIA_URL + self.foto.url
 
     def __str__(self):
         return f"{self.foto.name.split('/')[-1]}"

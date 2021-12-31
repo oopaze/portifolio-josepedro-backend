@@ -4,11 +4,13 @@ from rest_framework.decorators import api_view
 
 from user.models import Contato
 from home.models import Home, Momento
+from core.models import Imagem
 from booking.models import Booking
 from .serializers import (
     BookingSerializer,
     ContatoSerializer,
     HomeSerializer,
+    ImagemSerializer,
     MomentoSerializer,
 )
 
@@ -27,6 +29,23 @@ class MomentoListAPIView(ListAPIView):
 
     def get_queryset(self):
         return Momento.objects.all().distinct('tipo')
+
+
+class ImagemListAPIView(ListAPIView):
+    serializer_class = ImagemSerializer
+    model = Imagem
+    paginate_by = 30
+
+    def get_queryset(self):
+        try:
+            booking_id = self.kwargs.get('booking_id', -1)
+            booking_instance = Booking.objects.get(pk=booking_id)
+
+            return booking_instance.fotos.all()
+        except Booking.DoesNotExist:
+            pass
+
+        return Imagem.objects.all().order_by('foto')
 
 
 class BookingListAPIView(ListAPIView):

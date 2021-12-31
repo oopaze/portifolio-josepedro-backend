@@ -25,18 +25,6 @@ class Momento(TimeStampedModel):
         return f"{self.id} - Momento ({self.get_tipo_display()})"
 
 
-class Pacote(TimeStampedModel):
-    titulo = models.CharField('Título', max_length=100)
-    imagem_fundo = models.ForeignKey('core.Imagem', on_delete=models.CASCADE)
-
-    def __iter__(self):
-        yield 'imagem', settings.BASE_MEDIA_URL + self.imagem_fundo.foto.url
-        yield 'titulo', self.titulo
-
-    def __str__(self):
-        return f"Pacote {self.titulo}"
-
-
 class InstagramFeel(TimeStampedModel):
     instagram_1 = models.ForeignKey(
         'core.Imagem', on_delete=models.CASCADE, related_name='instagram_1'
@@ -146,9 +134,6 @@ class Home(TimeStampedModel):
         'core.Imagem', on_delete=models.PROTECT, related_name='profile'
     )
     profile_resumo = models.TextField('Resumo')
-
-    # pacotes
-    pacotes = models.ManyToManyField(Pacote)
 
     # frase
     frase_img = models.ForeignKey(

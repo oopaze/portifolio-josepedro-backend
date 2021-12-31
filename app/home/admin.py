@@ -7,13 +7,9 @@ from . import models
 class Carrosel(admin.ModelAdmin):
     ...
 
+
 @admin.register(models.Momento)
 class MomentoAdmin(admin.ModelAdmin):
-    ...
-
-
-@admin.register(models.Pacote)
-class PacoteAdmin(admin.ModelAdmin):
     ...
 
 

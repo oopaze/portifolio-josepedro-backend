@@ -1,9 +1,19 @@
 from rest_framework import serializers
 from django.conf import settings
 
+from core.models import Imagem
 from home.models import Home, Momento
 from user.models import Contato
 from booking.models import Booking
+
+
+class ImagemSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(source='get_tipo_display')
+    img = serializers.CharField(source='foto_full_url')
+
+    class Meta:
+        model = Imagem
+        fields = ('title', 'img')
 
 
 class ContatoSerializer(serializers.ModelSerializer):
@@ -44,6 +54,16 @@ class HomeSerializer(serializers.ModelSerializer):
     pacotes = serializers.SerializerMethodField()
     contato_image = serializers.SerializerMethodField()
     instagram_feels = serializers.SerializerMethodField()
+    galeria = serializers.SerializerMethodField()
+
+    def get_galeria(self, home):
+        return [
+            {
+                'title': imagem.get_tipo_display(),
+                'img': imagem.foto_full_url,
+            }
+            for imagem in Imagem.objects.all().order_by('foto')[:9]
+        ]
 
     def get_carrossel(self, home):
         return list(home.carrossel)

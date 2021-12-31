@@ -9,6 +9,8 @@ class BookingAdmin(admin.ModelAdmin):
     add_form = ImportBookingForm
     form = BookingUpdateForm
 
+    readonly_fields = ('id',)
+
     def get_form(self, request, obj=None, **kwargs):
         defaults = {}
 

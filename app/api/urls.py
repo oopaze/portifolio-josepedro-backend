@@ -5,6 +5,7 @@ from .views import (
     ContatoCreateAPIView,
     MomentoListAPIView,
     BookingListAPIView,
+    ImagemListAPIView,
 )
 
 
@@ -13,4 +14,7 @@ urlpatterns = [
     path('new/contact/', ContatoCreateAPIView.as_view(), name="contato"),
     path('momentos/', MomentoListAPIView.as_view(), name='momentos'),
     path('bookings/<str:tipo>/', BookingListAPIView.as_view(), name='bookings_filtred'),
+    path(
+        'bookings/fotos/<int:booking_id>/', ImagemListAPIView.as_view(), name='imagens'
+    ),
 ]
