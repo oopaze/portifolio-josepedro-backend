@@ -34,7 +34,12 @@ class BookingListAPIView(ListAPIView):
     model = Booking
 
     def get_queryset(self):
-        return Booking.objects.filter(tipo=self.kwargs['tipo'])
+        filter_kw = {}
+
+        if self.kwargs.get('tipo') != 'ALL':
+            filter_kw['tipo'] = self.kwargs['tipo']
+
+        return Booking.objects.filter(**filter_kw)
 
 
 class ContatoCreateAPIView(CreateAPIView):
