@@ -3,6 +3,7 @@ from django import forms
 from core.models import Imagem
 from booking.models import Booking
 from core.choices import TIPOS
+from .handles.HandleUnzipImages import HandleUnzipImages
 
 
 class BookingUpdateForm(forms.ModelForm):
@@ -26,7 +27,7 @@ class ImportBookingForm(forms.ModelForm):
     _comentario = forms.CharField(
         label="Comentário",
         max_length=255,
-        widget=forms.Textarea,
+        widget=forms.Textarea(attrs={'maxlength': 210}),
         required=True,
     )
     _tipo = forms.ChoiceField(label='Tipo', choices=TIPOS, required=True)
@@ -53,6 +54,9 @@ class ImportBookingForm(forms.ModelForm):
             titulo=self.cleaned_data['_titulo'],
             comentario=self.cleaned_data['_comentario'],
         )
+
+        unzip_handle = HandleUnzipImages(instance, self.cleaned_data['_imagens'])
+        unzip_handle.start_save_all_images()
 
         return instance
 

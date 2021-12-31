@@ -7,7 +7,7 @@ from core.models import TimeStampedModel
 
 class Booking(TimeStampedModel):
     titulo = models.CharField(max_length=100)
-    comentario = models.TextField(max_length=255, null=True, blank=True)
+    comentario = models.TextField(max_length=210, null=True, blank=True)
     tipo = models.CharField(max_length=20, choices=TIPOS, default=DEFAULT)
 
     fotos = models.ManyToManyField('core.Imagem', blank=True)
