@@ -12,6 +12,10 @@ class Momento(TimeStampedModel):
     )
     tipo = models.CharField("Tipo", max_length=20, choices=TIPOS, default=DEFAULT)
 
+    @property
+    def capaURL(self):
+        return settings.BASE_MEDIA_URL + self.capa.foto.url
+
     def __iter__(self):
         yield 'tipo', self.get_tipo_display()
         yield 'capaUrl', settings.BASE_MEDIA_URL + self.capa.foto.url

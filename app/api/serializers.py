@@ -11,6 +11,21 @@ class ContatoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MomentoSerializer(serializers.ModelSerializer):
+    capaURL = serializers.SerializerMethodField()
+    tipoName = serializers.SerializerMethodField()
+
+    def get_capaURL(self, obj):
+        return obj.capaURL
+
+    def get_tipoName(self, obj):
+        return obj.get_tipo_display()
+
+    class Meta:
+        model = Momento
+        fields = ('tipo', 'tipoName', 'capaURL')
+
+
 class HomeSerializer(serializers.ModelSerializer):
     carrossel = serializers.SerializerMethodField()
     profile_foto = serializers.SerializerMethodField()
