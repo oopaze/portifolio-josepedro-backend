@@ -41,11 +41,17 @@ class ImagemListAPIView(ListAPIView):
             booking_id = self.kwargs.get('booking_id', -1)
             booking_instance = Booking.objects.get(pk=booking_id)
 
-            return booking_instance.fotos.all()
+            instances = booking_instance.fotos.all()
         except Booking.DoesNotExist:
             pass
 
-        return Imagem.objects.all().order_by('foto')
+        instances = Imagem.objects.all().order_by('?')
+
+        tipo = self.request.query_params.get('tipo')
+        if tipo:
+            instances = instances.filter(tipo=tipo)
+
+        return instances
 
 
 class BookingListAPIView(ListAPIView):
