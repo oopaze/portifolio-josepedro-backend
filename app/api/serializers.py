@@ -51,7 +51,6 @@ class HomeSerializer(serializers.ModelSerializer):
     profile_foto = serializers.SerializerMethodField()
     frase_img = serializers.SerializerMethodField()
     momentos = serializers.SerializerMethodField()
-    pacotes = serializers.SerializerMethodField()
     contato_image = serializers.SerializerMethodField()
     instagram_feels = serializers.SerializerMethodField()
     galeria = serializers.SerializerMethodField()
@@ -79,9 +78,6 @@ class HomeSerializer(serializers.ModelSerializer):
             dict(momento)
             for momento in Momento.objects.exclude(tipo='default').distinct('tipo')[:3]
         ]
-
-    def get_pacotes(self, home):
-        return [dict(pacote) for pacote in home.pacotes.all()]
 
     def get_contato_image(self, home):
         return settings.BASE_MEDIA_URL + home.contato_image.foto.url

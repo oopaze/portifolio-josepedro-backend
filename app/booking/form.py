@@ -39,7 +39,7 @@ class ImportBookingForm(forms.ModelForm):
     _imagens = forms.FileField(
         label="Pasta Zipada com Imagens",
         widget=forms.FileInput(attrs={'accept': ".zip,.rar,.7zip"}),
-        required=False,
+        required=True,
     )
 
     def save(self, *args, **kwargs):
