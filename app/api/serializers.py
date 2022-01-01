@@ -61,7 +61,7 @@ class HomeSerializer(serializers.ModelSerializer):
                 'title': imagem.get_tipo_display(),
                 'img': imagem.foto_full_url,
             }
-            for imagem in Imagem.objects.all().order_by('foto')[:9]
+            for imagem in Imagem.objects.all().order_by('?')[:9]
         ]
 
     def get_carrossel(self, home):

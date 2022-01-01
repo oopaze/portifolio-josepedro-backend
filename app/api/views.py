@@ -43,9 +43,7 @@ class ImagemListAPIView(ListAPIView):
 
             instances = booking_instance.fotos.all()
         except Booking.DoesNotExist:
-            pass
-
-        instances = Imagem.objects.all().order_by('?')
+            instances = Imagem.objects.all().order_by('?')
 
         tipo = self.request.query_params.get('tipo')
         if tipo:
