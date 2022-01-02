@@ -36,13 +36,27 @@ class ImagemListAPIView(ListAPIView):
     model = Imagem
     paginate_by = 30
 
+    def get(self, *args, **kwargs):
+        response = super().get(*args, **kwargs)
+
+        if self.object_found:
+            response.data['booking'] = {
+                'titulo': self.object.titulo,
+                'tipo': self.object.get_tipo_display(),
+            }
+
+        return response
+
     def get_queryset(self):
         try:
             booking_id = self.kwargs.get('booking_id', -1)
             booking_instance = Booking.objects.get(pk=booking_id)
 
             instances = booking_instance.fotos.all()
+            self.object_found = True
+            self.object = booking_instance
         except Booking.DoesNotExist:
+            self.object_found = False
             instances = Imagem.objects.all().order_by('?')
 
         tipo = self.request.query_params.get('tipo')

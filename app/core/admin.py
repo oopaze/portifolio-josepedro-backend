@@ -9,9 +9,4 @@ from .models import Imagem
 class ImagemAdmin(admin.ModelAdmin):
     ordering = ('foto',)
     readonly_fields = ('image_tag',)
-
-    def image_tag(self, obj):
-        return mark_safe('<img src="%s" />' % (settings.BASE_MEDIA_URL + obj.foto.url))
-
-    image_tag.short_description = 'Image'
-    image_tag.allow_tags = True
+    list_display = ('__str__', 'disponivel_galeria', 'tipo', 'image_tag')
