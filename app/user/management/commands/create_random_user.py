@@ -14,7 +14,11 @@ class Command(BaseCommand):
       })
       
       password = str(uuid4())
+      user.is_staff = True
+      user.is_superuser = True
       user.set_password(password)
+      
+      user.save()
       
       print(user.email, "seu email")
       print(password, "sua senha")
